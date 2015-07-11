@@ -5,7 +5,8 @@ define(function (require, exports, module) {
             console.log('123')
             RQ.get('test',{},function(res){
                 console.log(res)
-                
+                alert('me')
+                what a pity;asdlkfjaslkdjflkdsajflkasdjflk;asjdflkajsdf;lkj
             })
         }])
     }
