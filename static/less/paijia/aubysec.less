@@ -1,0 +1,409 @@
+.aubysecskill{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-image:url(../image/shop/aubyGame/bg1.jpg);
+    background-size:100%;
+  overflow: hidden;
+    .lefttop0{
+      left:0;
+      top:0;
+    }
+    .fullImage{
+      width: 100%;
+    }
+    .relPos{
+      position: relative;
+    }
+    .absPos{
+      position: absolute;
+    }
+    .marginTop3{
+      margin-top: 3px;
+    }
+    .header{
+      position: relative;
+      .downArrow{
+         position: absolute;
+         top: 78px;
+         right: 18px;
+         -webkit-animation-name: arrowDownDuang;
+         -webkit-animation-duration:1s;
+         -webkit-animation-iteration-count: infinite;
+         -webkit-animation-timing-function:ease-in-out;
+      }
+      @-webkit-keyframes  arrowDownDuang{
+          to{
+            -webkit-transform: translateY(50%);
+          }
+      }
+      .info{
+        position: absolute;
+        top:5px;
+        right: 5px;
+        z-index: 100;
+        img{
+          width: 50px;
+        }
+      }
+      .duang{
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border-width: 3px;
+        border-left-color: #dddddd;
+        border-top-color: #dddddd;
+        border-right-color: #FFFFFF;
+        border-bottom-color: #FFFFFF;
+        border-style: solid;
+        -webkit-animation-name: shakeDuang;
+        -webkit-animation-duration:2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function:linear;
+        -webkit-animation-direction: alternate;
+      }
+      @-webkit-keyframes shakeDuang{
+        0%{
+          border-left-color: #dddddd;
+          border-top-color: #dddddd;
+          border-right-color: #FFFFFF;
+          border-bottom-color: #FFFFFF;
+        }
+        50%{
+          border-left-color: #FFFFFF;
+          border-top-color: #dddddd;
+          border-right-color: #dddddd;
+          border-bottom-color: #FFFFFF;
+        }
+        100%{
+          border-left-color: #FFFFFF;
+          border-top-color: #FFFFFF;
+          border-right-color: #dddddd;
+          border-bottom-color: #dddddd;
+        }
+      }
+      .revduang{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border-width: 3px;
+        border-left-color: #FFFFFF;
+        border-top-color: #FFFFFF;
+        border-right-color: #dddddd;
+        border-bottom-color: #dddddd;
+        border-style: solid;
+        -webkit-animation-name: revShakeDuang;
+        -webkit-animation-duration:2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function:linear;
+        -webkit-animation-direction: alternate;
+      }
+      @-webkit-keyframes revShakeDuang{
+        0%{
+          border-left-color: #FFFFFF;
+          border-top-color: #FFFFFF;
+          border-right-color: #dddddd;
+          border-bottom-color: #dddddd;
+        }
+        50%{
+          border-left-color: #dddddd;
+          border-top-color: #FFFFFF;
+          border-right-color: #FFFFFF;
+          border-bottom-color: #dddddd;
+        }
+        100%{
+          border-left-color: #dddddd;
+          border-top-color: #dddddd;
+          border-right-color: #FFFFFF;
+          border-bottom-color: #FFFFFF;
+        }
+      }
+
+    }
+    .goodContent{
+
+    }
+    .goodFooter{
+        text-align: center;
+        position: relative;
+        background-image: url(../image/shop/aubyGame/aubya1_03_01.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        .seckillButton{
+//            position: absolute;
+//            left: 0;
+//            right: 0;
+//            top: 0;
+//            bottom: 0;
+            .layer{
+              text-align: center;
+//              margin-top: 3px;
+              a{
+                display: inline-block;
+                position: relative;
+                z-index:100;
+              }
+              img.small{
+                height: 32px;
+              }
+              img{
+                height: 38px;
+                display: inline-block;
+              }
+              img.time{
+                height: 21px;
+              }
+              .informOther{
+                font-size: 17px;
+                color: #3D59B3;
+                font-weight: bold;
+                text-shadow: 3px 3px 3px #F5F1F1;
+              }
+              .footerAmaz{
+                 color: #FFFFFF;
+                 font-weight: bold;
+                 font-size: 14px;
+              }
+            }
+        }
+        .down{
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        .upArrow{
+          display: inline-block;
+          -webkit-animation-name: arrowUpDuang;
+          -webkit-animation-duration:1s;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-timing-function:ease-in-out;
+        }
+        @-webkit-keyframes  arrowUpDuang{
+          to{
+            -webkit-transform: translateY(-50%);
+          }
+        }
+    }
+
+    @-webkit-keyframes ShakeItOff{
+
+        0%{
+          -webkit-transform: translate(100%,-200%);
+        }
+        20%{
+          -webkit-transform: translate(100%,-300%);
+        }
+        40%{
+          -webkit-transform: translate(100%,-400%);
+
+        }
+        60%{
+          -webkit-transform: translate(100%,-500%);
+
+        }
+
+        80%{
+          -webkit-transform: translate(100%,-600%);
+
+        }
+        100%{
+          -webkit-transform: translate(100%,-700%);
+
+        }
+
+    }
+    @-webkit-keyframes BlankSpace{
+
+      0%{
+        -webkit-transform: translate(320%,-200px);
+      }
+      20%{
+        -webkit-transform: translate(330%,-300px);
+      }
+      40%{
+        -webkit-transform: translate(340%,-400px);
+
+      }
+      60%{
+        -webkit-transform: translate(350%,-500px);
+
+      }
+
+      80%{
+        -webkit-transform: translate(360%,-600px);
+
+      }
+      100%{
+        -webkit-transform: translate(370%,-700px);
+
+      }
+
+    }
+
+    .bubble{
+        position: absolute;
+        .bubble{
+            position: absolute;
+            box-shadow:inset 0px 0px 46px 0px rgba(215, 224, 232,1);
+            border-radius: 50%;
+//            -webkit-transform: translateX(240px);
+            -webkit-animation-name: ShakeItOff;
+            -webkit-animation-duration:4s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function:linear;
+            z-index:0;
+        }
+        .bubble2{
+          position: absolute;
+          box-shadow:inset 0px 0px 46px 0px rgba(215, 224, 232,1);
+          border-radius: 50%;
+          -webkit-transform: translate(100px,-100%);
+          -webkit-animation-name: BlankSpace;
+          -webkit-animation-duration:4s;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-timing-function:linear;
+          z-index:0;
+        }
+
+        .bigSize{
+          width: 100px;
+          height: 100px;
+        }
+        .mediumSize{
+          width: 60px;
+          height: 60px;
+        }
+        .smallSize{
+          width: 30px;
+          height: 30px;
+        }
+        .delay{
+          -webkit-animation-delay:-1s
+        }
+
+    }
+    .duangDiv{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      overflow-y: auto;
+      -webkit-transform:translateY(100%);
+      -webkit-transition:all 0.5s;
+      z-index: 112;
+    }
+    .showDuangDiv{
+      -webkit-transform:translateY(0%);
+    }
+    .mask{
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.5) ;
+      z-index: 111;
+//      -webkit-transform:translateY(100%);
+//      -webkit-transition:all 0.5s;
+    }
+      .close{
+        position: absolute;
+        top:10px;
+        width: 30px;
+        height: 30px;
+        border-radius:50%;
+        background-color: #000000;
+        border: 3px solid #FFFFFF;
+        -webkit-transition:all 0.5s;
+        z-index: 113;
+      }
+      .left10{
+        left: 10px;
+      }
+      .right10{
+        right: 10px;
+      }
+
+
+  .close:before{
+        content:' ';
+        position: absolute;
+        width: 1px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        margin-left:-1px ;
+        margin-top:-9px ;
+        -webkit-transform:rotate(45deg);
+        background-color: #FFFFFF;
+
+      }
+      .close:after{
+        content:' ';
+        position: absolute;
+        width: 2px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        margin-left:-1px ;
+        margin-top:-9px ;
+        -webkit-transform:rotate(-45deg);
+        background-color: #FFFFFF;
+      }
+      .close:hover:before{
+        content:' ';
+        position: absolute;
+        width: 1px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        margin-left:-1px ;
+        margin-top:-9px ;
+        -webkit-transform:rotate(360deg);
+        background-color: #FFFFFF;
+      }
+      .close:hover:after{
+        content:' ';
+        position: absolute;
+        width: 2px;
+        height: 18px;
+        left: 50%;
+        top: 50%;
+        margin-left:-1px ;
+        margin-top:-9px ;
+        -webkit-transform:rotate(-90deg);
+        background-color: #FFFFFF;
+      }
+
+      .inform{
+        -webkit-transform:translateY(130px);
+      }
+
+      .list{
+        //        height: 100%;
+        //        overflow-y: auto;
+        //        background-repeat: no-repeat;
+        //        background-size: 100%;
+        //        background-image:url(../image/shop/aubyGame/secKillList.jpg);
+      }
+      .basic{
+        width: 80%;
+        margin:0 auto;
+      }
+
+
+
+//    .showMask{
+//      -webkit-transform:translateY(0%);
+//    }
+}

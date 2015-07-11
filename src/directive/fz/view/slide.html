@@ -1,0 +1,10 @@
+<div id="slider-{{::name}}" class="ui-slider">
+    <ul class="ui-slider-content">
+        <li ng-repeat="v in data">
+            <a href="{{::v.url}}">
+                <img ng-src="{{::v.image}}">
+            </a>
+            <p ng-if="v.title">{{::v.title}}</p>
+        </li>
+    </ul>
+</div>

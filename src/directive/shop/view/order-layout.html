@@ -1,0 +1,79 @@
+<div class="order-layout" ng-if="show_order&&!show_order_coupon&&!show_order_list"
+     ng-class="{'on':show_order_layout}">
+    <form class="address-ui address-fm" name="orderLayout" ng-submit="add_cus_address(form_order)">
+        <h4 class="address-fm-title">收货地址</h4>
+
+        <div class="publish-cancel" ng-click="ctrl_close_order()">
+            <div class="cancel-img"></div>
+        </div>
+        <div class="block">
+
+            <div class="block-item">
+                <label class="form-row form-text-row">
+                    <em class="form-text-label">收货人</em>
+                    <span class="input-wrapper">
+                        <input type="text" name="user_name" class="form-text-input" ng-model="form_order.receiver"
+                               placeholder="名字">
+                    </span>
+                </label>
+            </div>
+            <div class="block-item">
+                <label class="form-row form-text-row">
+                    <em class="form-text-label">联系电话</em>
+                    <span class="input-wrapper"><input type="tel" name="tel" class="form-text-input"
+                                                       ng-model="form_order.cellPhone" placeholder="手机或固话"></span>
+                </label>
+            </div>
+            <div class="block-item">
+                <div class="form-row form-text-row">
+                    <em class="form-text-label">收货地址</em>
+
+                    <div class="input-wrapper input-region">
+                        <span>
+                        <select type="province" name="province" ng-model="form_order.province"
+                                ng-options="region.regionName for region in op.provinces"
+                                ng-change="set_cities(form_order.province.regionID)">
+                            <option value="">选择省份</option>
+                        </select>
+                            </span>
+                             <span>
+                        <select type="city" name="city" ng-model="form_order.city"
+                                ng-options="region.regionName for region in op.cities"
+                                ng-change="set_districts(form_order.city.regionID)">
+                            <option value="">选择城市</option>
+                        </select>
+                                 </span>
+                                  <span>
+                        <select type="district" name="district" ng-model="form_order.district"
+                                ng-options="region.regionName for region in op.districts">
+                            <option value="">选择区县</option>
+                        </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="block-item">
+                <label class="form-row form-text-row">
+                    <em class="form-text-label">详细地址</em>
+                    <span class="input-wrapper"><input type="text" name="address_detail" class="form-text-input"
+                                                       ng-model="form_order.detailAddress" placeholder="街道门牌信息"></span>
+                </label>
+            </div>
+            <div class="block-item">
+                <label class="form-row form-text-row">
+                    <em class="form-text-label">邮政编码</em>
+                    <span class="input-wrapper"><input type="tel" maxlength="6" name="postal_code"
+                                                       class="form-text-input" ng-model="form_order.postCode"
+                                                       placeholder="邮政编码(选填)"></span>
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <div class="action-container">
+                <button class="btn btn-block btn-green">保存</button>
+
+            </div>
+        </div>
+    </form>
+</div>

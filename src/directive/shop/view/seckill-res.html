@@ -1,0 +1,37 @@
+<div class="seckill-res"  ng-class="{'on':secAction.show_res_list}" ng-click="secAction.close()">
+    <div class="content" ng-if="!secAction.morepro">
+        <div class="res_1 res sec" ng-if="secAction.show_num==1">
+            <div class="pic">
+            <img src="static/image/shop/100038/res_1.png">
+            </div>
+            <div class="publish-cancel" ng-click="secAction.close()">
+                <div class="cancel-img"></div>
+            </div>
+        </div>
+        <div class="res_1 res share" ng-if="secAction.show_num==2">
+            <div class="pic">
+                <img src="static/image/shop/100038/res_2.png">
+            </div>
+            <div class="publish-cancel" ng-click="secAction.close()">
+                <div class="cancel-img"></div>
+            </div>
+        </div>
+        <div class="res_1 res sec" ng-if="secAction.show_num==3">
+            <div class="pic">
+                <img src="static/image/shop/100038/res_3.png">
+            </div>
+            <div class="publish-cancel" ng-click="secAction.close()">
+                <div class="cancel-img"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="morepro" ng-if="secAction.morepro">
+        <div class="pic">
+        <img src="static/image/shop/100038/morepro.jpg">
+        </div>
+        <div class="publish-cancel" ng-click="secAction.close()">
+            <div class="cancel-img"></div>
+        </div>
+    </div>
+</div>

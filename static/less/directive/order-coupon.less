@@ -1,0 +1,107 @@
+
+.order-coupon.on {
+  transform: translate3d(0px, 0px, 0px);
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+
+.order-coupon {
+  overflow: hidden;
+  visibility: visible;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 1;
+  position: absolute;
+  z-index: 1000;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+  background: white;
+  transform: translate3d(0px, 100%, 0px);
+  -webkit-transform: translate3d(0px, 100%, 0px);
+
+  .publish-cancel {
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    padding: 10px;
+    .cancel-img {
+      height: 27px;
+      width: 27px;
+
+      background-position: 0 -120px;
+      background-repeat: no-repeat;
+      background-image: url(@show_case_img);
+      // background-position: 0 -108px;
+      background-size: 40px auto;
+    }
+  }
+
+  .coupon-fm {
+    .coupon-fm-title {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 16px;
+    }
+  }
+  div.coupon-list::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #cbc9cc;
+    border-right: 2px solid #cbc9cc;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 0;
+    bottom: 0;
+    right: 15px;
+    margin: auto;
+  }
+
+  .coupon-list {
+    padding: 10px 0px 0px 20px;
+    .coupon-name {
+      font-size: 16px;
+    }
+    .coupon-limit {
+      color: darkgray;
+    }
+    .coupon-time {
+      color: darkgray;
+      float: right;
+      margin-right: 50px;
+    }
+  }
+
+
+  .block {
+    .block-item {
+      margin-left: 10px;
+      padding-left: 0px;
+    }
+  }
+
+}
+
+.empty-coupon-list {
+  position: relative;
+  padding: 10px 10px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #fff;
+  text-align: center;
+  font-size: 16px;
+  span {
+    color: #ff1210;
+  }
+}
+
+.action-container {
+  padding: 0 10px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+

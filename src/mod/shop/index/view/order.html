@@ -1,0 +1,190 @@
+<div class="content order">
+    <div class="content-body">
+        <div class="important-message important-message-order">
+            <h3>你于{{ order.createTime|date : 'yyyy-MM-dd HH:mm:ss' }}下的订单</h3>
+
+            <div ng-switch="order.orderStatus">
+                <p ng-switch-when="1">请于 {{ delay_time(order.createTime,720) }} 内付款，超时订单将自动取消。</p>
+
+                <p ng-switch-when="2">已付款,待发货</p>
+                <p ng-switch-when="3">已发货</p>
+                <p ng-switch-when="4">已完成</p>
+                <p ng-switch-when="5">已关闭</p>
+                <p ng-switch-when="6">退款中</p>
+                <p ng-switch-when="7">支付确认中</p>
+            </div>
+        </div>
+
+
+        <div class="express-panel express-panel-no" ng-if="order.orderStatus==1&&!orderAddress.detailAddress" ng-click="ctrl_order()">
+            <div class="empty-address-tip"><span>添加收货地址</span></div>
+        </div>
+
+
+
+        <div class="block block-form" ng-if="order.orderStatus>1">
+            <div class="express-panel">
+                <ul class="express-detail">
+                    <li class="clearfix">
+                        <span class="name">收货人：{{orderAddress.receiver}}</span>
+                        <span class="tel">{{orderAddress.cellPhone}}</span>
+                    </li>
+                    <li class="address-detail">
+                        收货地址：{{ orderAddress.province}} {{orderAddress.city}} {{orderAddress.district}}
+                        {{orderAddress.detailAddress}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="block block-form" ng-if="order.orderStatus==1&&orderAddress.detailAddress" ng-click="ctrl_order()">
+            <div class="express-panel express-panel-edit">
+                <ul class="express-detail">
+                <li class="clearfix">
+                        <span class="name">收货人：{{orderAddress.receiver}}</span>
+                        <span class="tel">{{orderAddress.cellPhone}}</span>
+                    </li>
+                    <li class="address-detail">
+                        收货地址：{{ orderAddress.province}} {{orderAddress.city}} {{orderAddress.district}}
+                        {{orderAddress.detailAddress}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="block block-list express-info append-message" ng-if="order.orderStatus>2 && order.orderStatus!=5">
+            <div class="block-item font-size-12">
+                <p class="express-title" ng-if="order.orderDelivery.delivererName">
+                    {{order.orderDelivery.delivererName}}<span
+                        class="c-gray">{{order.orderDelivery.deliveryCode}}</span>
+                </p>
+
+                <p class="express-context" ng-if="!order.orderDelivery.delivererName">暂无物流详情</p>
+
+
+            </div>
+        </div>
+
+
+        <div class="block block-order ">
+
+            <div class="block block-list block-border-top-none block-border-bottom-none">
+                <div class="block-item name-card name-card-3col clearfix" ng-repeat="orderSubs in order.orderSubs">
+
+
+                    <a ng-href="#/shop/index/detail?id={{::orderSubs.productID}}" class="thumb">
+                        <img ng-src="{{::F.get_image(orderSubs.url,60,60,1)}}">
+                    </a>
+
+                    <div class="detail">
+                        <a href="#/shop/index/detail?id={{::orderSubs.productID}}"><h3>{{::orderSubs.productName}}</h3></a>
+
+                        <p class="c-gray ellipsis">{{orderSubs.productSpecContent}}
+                        </p>
+                    </div>
+                    <div class="right-col">
+                        <div class="price">￥<span>{{::orderSubs.realPrice}}</span></div>
+                        <div class="num">×<span class="num-txt">{{::orderSubs.qty}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="margin-0 left-10">
+
+            <div class="bottom">总价<span class="c-orange pull-right">￥{{order.totalAmt}}</span></div>
+        </div>
+
+        <div class="couponuse" ng-click="(order.orderStatus>1||order.totalAmt==6.1)?'':ctrl_order_coupon()">
+            <hr class="margin-0 left-0">
+            <div class="coupondetail">
+                <span class="coupon">优惠券</span>
+                <span class="usecoupon" ng-if="paycoupon.payTypeName||paycoupon.couponName">已使用：{{paycoupon.payTypeName||paycoupon.couponName}}</span>
+                <span class="usecoupon" ng-if="!paycoupon.payTypeName&&!paycoupon.couponName">未使用优惠券</span>
+            </div>
+        </div>
+
+        <div class="codeuse" ng-click="(order.orderStatus>1||order.totalAmt==6.1)?'':ctrl_order_code()">
+            <hr class="margin-0 left-0">
+            <div class="codedetail">
+                <span class="code">优惠码</span>
+                <span class="usecode" ng-if="orderPromocode.promotionID>0">已使用：{{orderPromocode.promotionName}}</span>
+                <span class="usecode" ng-if="!orderPromocode.promotionID">未使用优惠码</span>
+            </div>
+        </div>
+
+        <div class="js-step-topay">
+            <div class="block">
+                <div class="block-item order-total">
+                    <p>
+                        <span>￥{{order.totalAmt}} </span>
+                        <span ng-if="fullPromotion">- ￥{{fullPromotion.disAmt}}(满减)</span>
+                        <!--<span ng-if="Promofreight">- ￥{{Promofreight.disAmt}}({{Promofreight.promotionName}})</span>-->
+                        <span ng-if="orderPromocode.promotionID>0">- ￥{{orderPromocode.disAmt}}(优惠码)</span>
+                        <span ng-if="paycoupon.payTypeName||paycoupon.couponName">- ￥{{paycoupon.appAmt||paycoupon.couponAmt}}</span>
+                        <span>+ ￥{{order.freight}}运费</span>
+                    </p>
+
+
+                    <strong class="c-orange" ng-if="order.orderStatus==1">
+                    需付：￥{{order.receivableAmt}}
+                    </strong>
+                    <strong class="c-orange" ng-if="order.orderStatus>1&&rder.orderStatus!=5">
+                        实付：￥{{order.payAmt}}
+                    </strong>
+                </div>
+                <div class="{{order.receivableAmt==0?'block-item paid-time':'block-item'}}">
+                    <div class="paid-time-inner">
+                        <p>订单号：{{order.orderCode}}</p>
+                        <!--<p class="c-gray" ng-if="order.orderStatus>1&&rder.orderStatus!=5">-->
+                        <!--{{ order.payTime|date : 'yyyy-MM-dd HH:mm:ss' }}-->
+                        <!--<br>完成付款-->
+                        <!--</p>-->
+                    </div>
+                </div>
+                <div class="toservice" ng-if="order.orderStatus==2||order.orderStatus==3||order.orderStatus==4">
+                    <a ng-if="!order.service" href="#/shop/index/service?orderID={{order.orderID}}" class="c-green-55BD47">申请售后</a>
+                    <a ng-if="order.service" href="#/shop/index/serviceStatus?serviceID={{order.service.serviceID}}" class="c-green-55BD47">申请售后</a>
+                    <!--<a ng-switch-when="1" href="#/shop/index/serviceStatus?serviceID={{order.serviceID}}" class="c-green-55BD47">客服和维权</a>-->
+                </div>
+                <div class="toservice" ng-if="(order.orderStatus==5||order.orderStatus==6)&&order.service">
+                    <a href="#/shop/index/serviceStatus?serviceID={{order.service.serviceID}}" class="c-green-55BD47">申请售后</a>
+                </div>
+            </div>
+
+            <div class="action-container" id="confirm-pay-way-opts" ng-if="order.orderStatus==1&&orderAddress&&orderAddress.detailAddress">
+                <button type="button" ng-click="wx_to_pay()" ng-disabled="wx_to_pay_click" data-pay-type="peerpay"
+                        class="btn-pay btn btn-block btn-large btn-peerpay  btn-green">微信支付
+                </button>
+            </div>
+            <div class="action-container" ng-if="order.orderStatus==3">
+                <button type="button" ng-click="confirm(order.orderID)"
+                        class="btn-pay btn btn-block btn-large btn-peerpay  btn-green">确认收货
+                </button>
+            </div>
+            <!--<div class="action-container"  ng-if="order.orderStatus==4">-->
+            <!--<spann class="complete">已完成</spann>-->
+            <!--</div>-->
+
+            <!--<div class="block block-top-0 block-border-top-none center"
+                 ng-if="order.orderStatus>1&&order.orderStatus!=5">
+                <a class="block-item c-green-55BD47">客服和维权</a>
+            </div>-->
+
+            <!--<div class="app-inner inner-order peerpay-gift" style="display:none;" id="sku-message-poppage">
+                <div class="js-list block block-list"></div>
+                <h2>备注信息</h2>
+                <ul class="block block-form js-message-container"></ul>
+                <div class="action-container">
+                    <button class="btn btn-white btn-block js-cancel">查看订单详情</button>
+                </div>
+            </div>-->
+
+        </div>
+    </div>
+    <div class="bg-main" ng-if="show_order||show_order_code"></div>
+    <order-list></order-list>
+    <order-layout></order-layout>
+    <order-coupon></order-coupon>
+    <order-code></order-code>
+
+</div>

@@ -1,0 +1,97 @@
+<div class="bg-main" ng-if="show_sku">
+    <div class="sku-layout sku-box-shadow" ng-class="{'on':show_sku_layout,'':!show_sku_layout}">
+        <div class="layout-title sku-box-shadow name-card sku-name-card">
+            <div class="thumb"><img
+                    ng-src="{{::F.get_image(product.productImages[0].url,40,40,1)}}">
+            </div>
+            <div class="detail goods-base-info clearfix">
+                <p class="title c-black ellipsis">{{ product.productName }}</p>
+
+                <div class="goods-price clearfix">
+                    <div class="current-price c-black pull-left">
+                        <span class="price-name pull-left font-size-14 c-orange" ng-if="sku_value.price">￥</span><i
+                            class="price font-size-14 c-orange vertical-middle">{{sku_value.latest_price}}</i>
+                    </div>
+                </div>
+            </div>
+            <div class="sku-cancel" ng-click="ctrl_sku_close()">
+                <div class="cancel-img"></div>
+            </div>
+        </div>
+
+        <div class="adv-opts layout-content">
+            <div class="goods-models block block-list block-border-top-none">
+                <dl class="clearfix block-item" ng-repeat="op in sku.opt">
+
+                    <dt class="model-title sku-sel-title">
+                        <label>{{::op.name}}：</label>
+                    </dt>
+                    <dd>
+                        <ul class="model-list sku-sel-list" ng-repeat="item in op.values">
+                            <li class="tag sku-tag pull-left ellipsis" ng-click="select_sku(item,$parent.$index)"
+                                ng-class="sku_item_active(item,$parent.$index)">{{item}}
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl class="clearfix block-item">
+                    <dt class="model-title sku-num pull-left"><label>数量</label></dt>
+                    <dd>
+                        <dl class="clearfix">
+                            <div class="quantity">
+                                <button class="minus" type="button" ng-click="set_order()"
+                                        ng-disabled="order.num==0"></button>
+                                <input type="text" class="txt" ng-model="order.num" ng-change="check_quantity(order)">
+                                <button class="plus" type="button" ng-click="set_order(1)"
+                                        ng-disabled="sku_value.num&&order.num==sku_value.num"></button>
+                            </div>
+                            <div class="stock pull-right font-size-12">
+                                <dt class="model-title stock-label pull-left">
+                                    <label>剩余: </label>
+                                </dt>
+                                <dd class="stock-num">
+                                    {{sku_value.num}}
+                                </dd>
+                            </div>
+                        </dl>
+                    </dd>
+                </dl>
+                <dl class="clearfix block-item">
+                    <!--<dt class="model-title sku-num pull-left"><label>总价</label></dt>-->
+                    <dd>
+                        <dl class="clearfix">
+                            <div class="quantity">
+                                <dt>order.num</dt>
+                            </div>
+                            <div class="stock pull-right font-size-12">
+                                <dt class="model-title stock-label pull-left">
+                                    <label>总价: </label>
+                                </dt>
+                                <dd class="stock-num">
+                                    {{F.changeTwoDecimal(sku_value.latest_price*order.num)}}
+                                </dd>
+                                <dt class="model-title stock-label pull-left"
+                                    ng-if="show_sku==1&&product.freight.promotionID&&(sku_value.latest_price*order.num)<freight.fullAmt">
+                                <label>+运费: </label>
+                                </dt>
+                                <dd class="stock-num"
+                                    ng-if="show_sku==1&&product.freight.promotionID&&(sku_value.latest_price*order.num)<freight.fullAmt">
+                                {{freight.freight}}
+                                </dd>
+                            </div>
+                        </dl>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="confirm-action content-foot">
+                <button class="btn btn-block btn-orange-dark" ng-disabled="order.num==0" ng-if="show_sku==1"
+                        ng-click="to_order(order)">下一步
+                </button>
+                <button class="btn btn-block btn-orange-dark" ng-disabled="order.num==0" ng-if="show_sku==2"
+                        ng-click="add_to_order(order)">加入购物车
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

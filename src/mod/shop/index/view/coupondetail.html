@@ -1,0 +1,51 @@
+<div class="container coupondetail" ng-if="couponData==1">
+    <div class="content " style="min-height: 652px;">
+        <div class="content-body">
+            <div class="ump-coupon-wrap">
+                <div class="ump-coupon-detail">
+                    <div class="ump-coupon-header">
+                        <div class="inner">
+                            {{cusCouponsDetail.couponName}}
+                            <div class="share"></div>
+                            <div class="js-share share-response"></div>
+                        </div>
+                    </div>
+                    <div class="ump-coupon-body">
+                        <div class="inner">
+                            <div class="ump-coupon-value">
+                                <span>￥</span><i>{{cusCouponsDetail.couponAmt}}</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ump-coupon-footer">
+                        <div class="inner">
+                            <p class="ump-coupon-desc">有效日期：
+                                {{cusCouponsDetail.startTime|date : 'yyyy-MM-dd HH:mm:ss'}} 至<br>　　　　　 {{cusCouponsDetail.endTime|date : 'yyyy-MM-dd HH:mm:ss'}} </p>
+
+                            <p class="ump-coupon-desc" ng-if="cusCouponsDetail.fullAmt>0">使用限制：
+                                订单满{{cusCouponsDetail.fullAmt}}元 </p>
+
+                            <p class="ump-coupon-desc" ng-if="cusCouponsDetail.fullAmt==0">使用限制：
+                                无限制</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="ump-coupon-action take-coupon-failure">
+                    <div class="inner">
+                        <!--<span>每人限领1张</span>-->
+                        <div class="coupon-msg">{{cusCouponsDetail.couponStatus}}</div>
+                        <div class="links">
+                            <button ng-if="cusCouponsDetail.canReceive==1" ng-click="receive(cusCouponsDetail.couponID)">点击领取</button>
+                        </div>
+                        <div class="links" ng-if="!cusCouponsDetail.canReceive==1" >
+                            <span>{{cusCouponsDetail.failReason}}</span><br>
+                            <a class="gocouponlist" href="#/shop/index/coupon">查看我的优惠券</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-404" ng-if="couponData==0" ng-include="G.path.mod+'/_public/view/404.html'"></div>

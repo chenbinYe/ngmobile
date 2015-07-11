@@ -1,0 +1,99 @@
+<div class="container service">
+    <div class="content clearfix">
+        <form class="js-apply-form" ng-submit="add_service(form_order)">
+            <ul class="block block-list block-form">
+                <li class="block-item font-size-12">
+                    <p class="padding-right-10 padding-top-10">
+                        <i class="c-gray-ccc">商品名称</i>
+                        <i class="pull-right c-dark-666">{{order.orderSubs[0].productName}}</i>
+                    </p>
+
+                    <p class="padding-right-10">
+                        <i class="c-gray-ccc">订单金额</i>
+                        <i class="pull-right c-dark-666">￥{{order.payAmt}}</i>
+                    </p>
+
+                    <p class="padding-right-10">
+                        <i class="c-gray-ccc">订单编号</i>
+                        <i class="pull-right c-dark-666">{{order.orderCode}}</i>
+                    </p>
+
+                    <p class="padding-right-10">
+                        <i class="c-gray-ccc">交易时间</i>
+                        <i class="pull-right c-dark-666">{{order.createTime|date: 'yyyy-MM-dd HH:mm:ss'}}</i>
+                    </p>
+                </li>
+                <li class="block-item arrow">
+                    <label><span class="must">*</span>处理方式</label>
+                    <select class="resolve" name="safeguard_type" ng-show="order.orderStatus!=2"
+                            ng-model="form_order.serviceType">
+                        <option value="">请选择处理方式</option>
+                        <option value="1">仅退款</option>
+                        <option value="2">退货退款</option>
+                    </select>
+                    <select class="resolve" name="safeguard_type"
+                            ng-model="form_order.serviceType" ng-show="order.orderStatus==2">
+                        <option value="">请选择处理方式</option>
+                        <option value="1">仅退款</option>
+                    </select>
+                </li>
+                <li class="block-item arrow">
+                    <label class="c-dark-666"><span class="must">*</span>维权原因</label>
+                    <select class="js-reason font-size-14" name="serviceReason"
+                            ng-options="dataDic.dataValue for dataDic in serviceReason.dataDics"
+                            ng-model="form_order.serviceReason">
+                        <option value="">请选择退款原因</option>
+                    </select>
+                </li>
+                <li class="block-item">
+                    <label class="c-dark-666"><span class="must">*</span>退款金额</label>
+                    <input type="text" class="js-money font-size-14" name="appRefundAmt" min="0" value=""
+                           placeholder="最多可退款{{order.payAmt}}元" ng-model="form_order.appRefundAmt">
+                </li>
+            </ul>
+
+            <ul class="block-form-safeguard block block-list block-form">
+                <li class="block-item">
+                    <label class="c-dark-666"><span class="must">*</span>手机号码</label>
+                    <input type="tel" class="js-tel font-size-14" name="cellPhone" value="" placeholder="填写手机号便于卖家联系您"
+                           ng-model="form_order.cellPhone">
+                </li>
+                <li class="block-item remarkinformation">
+                    <span class="remarkinfo">备注信息</span>
+                    <textarea name="remark" rows="2" placeholder="最多可填写200个字"
+                              ng-model="form_order.buyerRemark"></textarea>
+                </li>
+                <!--<li class="block-item item-picture-upload">-->
+                    <!--<label class="photo">图片举证</label>-->
+
+                    <!--<div class="picture-detail">-->
+                        <!--<p class="c-gray-ccc font-size-12">可上传5张图片</p>-->
+                        <!--<p class="js-input-container picture-container">-->
+                            <!--<span class="picture-wrapper picture-review">-->
+                            <!--<i class="js-delete-picture delete-picture" ng-click="remove_image($index)"></i>-->
+                            <!--<img src="http://imgqn.koudaitong.com/upload_files/2015/05/14/FrcAyavO_j2H77oCzSEnE0By-ueO.jpg!100x100.jpg"-->
+                                 <!--alt="">-->
+                            <!--</span>-->
+                            <!--<span class="picture-wrapper picture-review">-->
+                            <!--<i class="js-delete-picture delete-picture"-->
+                               <!--data-key="100001_2015429_1430301942375_54.jpg_140977"></i>-->
+                            <!--<img src="http://imgqn.koudaitong.com/upload_files/2015/05/14/FrcAyavO_j2H77oCzSEnE0By-ueO.jpg!100x100.jpg"-->
+                                 <!--alt="">-->
+                            <!--</span>-->
+                            <!--<span class="js-add-picture add-wrapper picture-wrapper c-gray-dark text-center">-->
+							<!--+-->
+							<!--<input type="file" class="add-picture" accept="image/*" multiple ng-file-select ng-file-change="onFileSelect($files)">-->
+                            <!--</span>-->
+
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+
+            <div class="action-container action-container-safeguard">
+                <button class="js-submit btn btn-block btn-green">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+

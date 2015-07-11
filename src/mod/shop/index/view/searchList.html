@@ -1,0 +1,35 @@
+<div class="content detail">
+    <div class="content-body">
+        <div class="img-box">
+            <img src="static/image/shop/100038/index_01.jpg">
+        </div>
+        <div class="good-list" ng-if="products.length>0">
+            <div class="header clearfix">
+                <span></span>
+            </div>
+            <ul class="clearfix">
+                <li ng-repeat="product in products">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url,260,260,1)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.afterDisPrice>0?product.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <button ng-if="!_disable_load" class="btn btn-block btn-loading" ng-click="find()">加载更多</button>
+        </div>
+
+    </div>
+</div>
+<div class="page-404" ng-if="!products" ng-include="G.path.mod+'/shop/public/view/404.html'"></div>
+

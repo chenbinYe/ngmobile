@@ -1,0 +1,33 @@
+<div class="order-coupon" ng-if="show_order&&!show_order_list&&!show_order_layout" ng-class="{'on':show_order_coupon}">
+<form class="coupon-fm" name="orderLayout" ng-submit="(form_order)">
+        <h4 class="coupon-fm-title">优惠券</h4>
+
+        <div class="publish-cancel" ng-click="ctrl_close_order()">
+            <div class="cancel-img"></div>
+        </div>
+        <div class="block" ng-repeat="cusCoupon in cusCoupons" ng-if="cusCoupon.fullAmt<=order.orderAmt">
+            <div class="coupon-list" ng-click="ctrl_order_coupon_use($index)">
+                <div class="">
+                    <ul class="">
+                        <li class="">
+                            <span class="coupon-name">{{cusCoupon.couponName}}</span>
+                        </li>
+                        <li class="coupon-limt" ng-if="cusCoupon.fullAmt>0">
+                            <span class="coupon-limit">订单满{{cusCoupon.fullAmt}}元-{{cusCoupon.couponAmt}}元</span><!--<span class="coupon-time">失效时间{{cusCoupon.endTime}}</span>-->
+                        </li>
+                        <li class="coupon-limt" ng-if="cusCoupon.fullAmt==0">
+                            <span class="coupon-limit">无限制：订单-{{cusCoupon.couponAmt}}元</span><!--<span class="coupon-time">失效时间{{cusCoupon.endTime}}</span>-->
+                        </li>
+                        <!--<li class="">-->
+                        <!--有效期：{{cusCoupon.startTime}}至{{cusCoupon.endTime}}-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    <div class="block" ng-click="ctrl_order_coupon_use()" ng-if="paycoupon.payTypeName||paycoupon.couponName">
+    <div class="empty-coupon-list"><span>取消已选优惠券</span></div>
+        </div>
+    </form>
+</div>

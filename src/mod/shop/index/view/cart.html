@@ -1,0 +1,126 @@
+<div class="content cart">
+
+    <div class="tabber  tabber-n3 tabber-double-11 clearfix">
+        <a class="active" href="#/shop/index/cart">购物车</a>
+        <a class="" href="#/shop/index/cusorderlist">我的订单</a>
+    </div>
+
+    <div class="block block-order clearfix">
+        <div class="header" ng-if="F.json_length(goods)>0">
+            <span ng-if="fullPromotion.isUse==1">已参加{{fullPromotion.promotionName}}</span>
+            <span ng-if="fullPromotion.isUse==0">还差{{F.changeTwoDecimal(fullPromotion.fullAmt-total_price)}}即可参加{{fullPromotion.promotionName}}</span>
+            <a class="pull-right c-blue font-size-12 edit-list">
+                <span ng-if="op==0" ng-click="change_op(1)">编辑</span>
+                <span ng-if="op==1" ng-click="change_op(0);">完成</span>
+            </a>
+        </div>
+
+        <ul class="list block block-list block-list-cart block-border-none" ng-if="F.json_length(goods)==0">
+            <div class="empty-list ">
+                <div class="empty-list-header">
+                    <h4>购物车还是空的哦~</h4>
+                    <span>赶紧挑选商品吧！</span>
+                </div>
+
+                <div class="empty-list-content"><a href="#/shop" class="home-page tag tag-big tag-orange">去逛逛</a></div>
+            </div>
+        </ul>
+
+
+        <ul class="list block block-list block-list-cart block-border-none" ng-if="F.json_length(goods)>0">
+            <li class="block-item block-item-cart relative clearfix" ng-repeat="good in goods track by $index">
+                <div class="check-container">
+                    <span ng-if="good.isStockOut==0 && op==0" class="check" ng-class="{'checked':good.isSelect}"
+                          ng-click="to_checked($index)"></span>
+                    <span ng-if="good.isStockOut==0 && op==1" class="check" ng-class="{'delete':good.isSelect}"
+                          ng-click="to_checked($index,'del')"></span>
+                    <span ng-if="good.isStockOut==1" class="check" ng-class="{'warning':good.isSelect}"
+                          ng-click="to_checked($index)"></span>
+                </div>
+                <div class="name-card name-card-3col clearfix">
+                    <a href="#/shop/index/detail?id={{good.productID}}" class="thumb"><img
+                            ng-src="{{F.get_image(good.imageUrl,60,60,1)}}"></a>
+
+                    <div class="detail">
+                        <a href="#/shop/index/detail?id={{good.productID}}">
+                            <h3><i>{{good.productName}}</i></h3>
+                        </a>
+
+                        <p class="ellipsis">
+                            <span>{{good.productSpecContent}}</span>
+                        </p>
+
+                        <p class="ellipsis">
+                            <span ng-if="good.isStockOut==1" class="isstockout">该商品库存不足</span>
+                        </p>
+                    </div>
+                    <div class="right-col price-num">
+                        <div class="price">￥<span>{{good.realPrice}}</span>
+                        </div>
+
+                        <div class="num">
+                            <p ng-if="op==0">×<span class="num-txt">{{good.qty}}</span></p>
+
+
+                            <div ng-if="op==1" class="quantity">
+                                <button class="minus" type="button" ng-click="set_order($index)"
+                                        ng-disabled="good.num==0"></button>
+                                <input type="text" class="txt" ng-model="good.qty" ng-change="check_quantity(good)">
+                                <button class="plus" type="button" ng-click="set_order($index,1)"
+                                        ></button>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="error-box"></div>
+                    </div>
+                </div>
+                <div class="delete-btn"><span>删除</span></div>
+
+            </li>
+            <li class="total-price" ng-if="op==0">商品总价：<span>{{total_price}}</span> <span
+                    ng-if="total_price>0&&fullPromotion.isUse==1">- {{fullPromotion.disAmt}}（{{fullPromotion.promotionName}}）</span>
+            </li>
+        </ul>
+
+
+        <div class="bottom-fix">
+            <div class="bottom-cart clear-fix">
+
+                <div class="select-all"
+                     ng-class="{'checked':F.json_length(_list['check'])}"
+                     ng-if="op==0"
+                     ng-click="F.json_length(goods)>0?to_all_check():''">
+                    <span class="check"
+                          ng-class="{'checked':select_count==F.json_length(goods)}"></span>全选
+                </div>
+
+                <div class="select-all"
+                     ng-class="{'delete':F.json_length(_list['del'])}"
+                     ng-if="op==1"
+                     ng-click="to_all_check('del')"><span class="check"
+                                                          ng-class="{'delete':select_count==F.json_length(goods)}"></span>全选
+                </div>
+
+
+                <div ng-if="op==0" class="total-price">合计：<span>{{after_dis_total}}</span><span
+                        ng-if="freight.promotionID&&after_dis_total>0&&freight.fullAmt>after_dis_total">+{{freight.freight}}</span>
+                    元
+                </div>
+                <!--                    <span ng-if="freight.freightID">+{{freight.freight}}(运费)</span>
+                                    <span ng-if="freight.freightID&&freight.fullAmt<total_price">-{{freight.freight}}({{freight.freightName}})</span></div>-->
+
+                <button ng-if="op==0" ng-click="to_order()" ng-disabled="select_count==0"
+                        class="btn btn-orange-dark font-size-14">结算
+                    <span ng-if="select_count!=0">({{select_count}})</span>
+                </button>
+
+                <button ng-click="to_del()" ng-if="op==1" class="btn font-size-14 btn-red"
+                        ng-disabled="select_count==0">删除
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

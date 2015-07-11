@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title ng-bind-html="site_title"></title>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta content="email=no" name="format-detection" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- build:weixin -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- endbuild -->
+
+    <!-- build:less -->
+    <link rel="stylesheet/less" type="text/css" href="static/less/style.less"/>
+    <script src="static/less/less.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+
+<div ng-view></div>
+<div class="load-view" ng-include="G.path.public+'/view/load-view.html'"></div>
+<!--微商城 独立的view 模块-->
+<!-- <div class="load-view shop_common" ng-include="G.path.mod+'/shop/index/view/common.html'"></div> -->
+
+
+<script>
+    var G = {
+        api_host:'http://ecom.wxpai.cn/ecomm/',
+        cdn_host:'http://fs.wxpai.cn/',
+        paiplus_host:'http://piplus.wxpai.cn/',
+        wx_config_host:'https://api.wxpai.cn/open/',
+        path:{
+            root:'./',
+            directive:'./src/directive',
+            mod:'./src/mod',
+            public:'./src/public'
+        },
+        query:{},//获取get值参数
+        user:{},//全局站点配置信息
+        site:{},//全局用户信息
+        site_name:'微商城',//默认标题
+        user_version: '20150619.06',//用户数据版本
+        load_version: '20150619.06',//文件加载版本
+        debug: 0//正式环境 0 debug模式设置为1 微信模式 2 PC模式
+    },F={};
+</script>
+
+<!--<script src="http://10.0.0.189:8888/target/target-script-min.js#anonymous"></script>-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="src/lib/sea.js"></script>
+<script src="src/load.js?061906"></script>
+</body>
+</html>

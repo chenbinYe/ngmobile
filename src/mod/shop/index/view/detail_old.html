@@ -1,0 +1,74 @@
+<div class="content detail" ng-if="product">
+    <div class="content-body">
+        <!--<a class="nav-btn" href="#/shop">返回</a>-->
+
+        <pj-carousel images="product.productImages" elm="detail_swipe"></pj-carousel>
+
+
+        <div class="goods-header">
+
+            <h2 class="title">{{ product.productName }}</h2>
+
+            <div class="goods-price goods-has-wish">
+                <div class="current-price">
+                    <span>￥</span><i class="js-goods-price price">{{lastest_price}}</i>
+                </div>
+                <div class="original-price">
+                    {{lastest_price==product.salePrice?product.originalPrice:product.salePrice}}
+                    <button class="detail-tigs" ng-if="product.firstTabName">{{::product.firstTabName}}</button>
+                </div>
+            </div>
+            <div class="discount-active" ng-if="product.discount.promotionID>0||product.fullPromotion.promotionID>0">
+                <label class="btn btn-orange">优惠</label><span class="discount-detail"
+                                                              ng-if="product.discount.promotionID>0">{{discount.promotionName}}</span>
+                <span ng-if="product.fullPromotion.promotionID>0" class="discount-detail"
+                      ng-repeat="fullPromotionSub in fullPromotion.promotionSubs">满{{fullPromotionSub.fullAmt}}减{{fullPromotionSub.disAmt}}</span>
+            </div>
+        </div>
+
+
+        <hr class="with-margin">
+        <div class="sku-detail adv-opts">
+            <div class="sku-detail-inner adv-opts-inner">
+                <dl ng-repeat="productSpec in product.productSpecs">
+                    <dt>{{productSpec.specName}}</dt>
+                    <dd>
+                        <span ng-repeat="item in productSpec.productSpecItems">{{item.specItemValue}}&nbsp;</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>剩余：</dt>
+                    <dd>{{ product.totalStockQty }}</dd>
+                </dl>
+                <dl>
+                    <dt>运费：</dt>
+                    <dd ng-if="!product.freight.freightID">免运费</dd>
+                    <dd ng-if="product.freight.freightID">{{product.freight.freightName}}</dd>
+                </dl>
+            </div>
+        </div>
+
+
+        <div class="custom-store clearfix">
+            <a href="#/" class="custom-store-enter">返回店铺主页</a>
+        </div>
+
+        <div class="custom-richtext">
+            <!--<p>{{product.productExt.salesTime}}开始发售</p>-->
+
+            <p ng-bind-html="details"></p>
+        </div>
+    </div>
+    <div id="right-icon" class="right-icon-fix" ng-if="cart" ng-click="to_cart()">
+        <div class="right-icon-container clearfix">
+            <a class="icon show-more-btn" ng-class="{'new':F.json_length(cart)>0}"></a>
+        </div>
+    </div>
+    <bottom-fix></bottom-fix>
+    <product-status></product-status>
+    <sku-layout></sku-layout>
+    <special-product></special-product>
+</div>
+
+
+<div class="page-404" ng-if="product.length<=0" ng-include="G.path.mod+'/_public/view/404.html'"></div>

@@ -1,0 +1,29 @@
+<div class="order-layout" ng-if="show_order&&!show_order_coupon&&!show_order_layout" ng-class="{'on':show_order_list}">
+<form class="address-ui address-fm" name="orderLayout" ng-submit="add_cus_address(form_order)">
+            <h4 class="address-fm-title">收货地址</h4>
+
+            <div class="publish-cancel" ng-click="ctrl_close_order()">
+                <div class="cancel-img"></div>
+            </div>
+            <div class="block" ng-repeat="orderAddress in orderAddresses" ng-if="$index< 3">
+            <div class="block block-form" ng-click="ctrl_order($index)">
+                    <div class="express-panel express-panel-edit">
+                        <ul class="express-detail">
+                            <li class="clearfix">
+                                <span class="name">收货人：{{orderAddress.receiver}}</span>
+                                <span class="tel">{{orderAddress.cellPhone}}</span>
+                            </li>
+                            <li class="address-detail">
+                                收货地址：{{ orderAddress.province}} {{orderAddress.city}} {{orderAddress.district}}
+                                {{orderAddress.detailAddress}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="express-panel express-panel-no" ng-click="ctrl_order()">
+                <div class="empty-address-tip"><span>添加收货地址</span></div>
+            </div>
+        </form>
+    </div>

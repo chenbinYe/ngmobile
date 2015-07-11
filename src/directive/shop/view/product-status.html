@@ -1,0 +1,4 @@
+<div class="product-status" ng-if="product.totalStockQty==0||product.isOnShelf==0">
+    <span ng-if="product.totalStockQty==0">此商品已售罄</span>
+    <span ng-if="product.isOnShelf==0&&product.totalStockQty>0">此商品已下架</span>
+</div>

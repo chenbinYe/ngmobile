@@ -1,0 +1,115 @@
+<div class="container serviceStatus">
+    <div class="content clearfix" style="min-height: 581px;">
+        <form class="js-apply-form" ng-submit="add_delivery(form_order)">
+        <div class="info-top-status font-size-12 text-center" ng-switch="serviceDetail.service.serviceStatus">
+            <span ng-switch-when="1">等待卖家同意申请</span>
+            <span ng-switch-when="2">等待卖家确认收货</span>
+            <span ng-switch-when="3">请退回商品</span>
+            <span ng-switch-when="4">等待卖家退款</span>
+            <span ng-switch-when="5">维权完成</span>
+            <span ng-switch-when="6">维权已取消</span>
+        </div>
+        <!--<ul class="block block-list">-->
+            <!--<li class="block-item">-->
+                <!--<p class="font-size-12">-->
+                    <!--<span class="c-black">如卖家同意：</span>-->
+                    <!--<span class="c-gray-dark">申请将达成并退款给您</span>-->
+                <!--</p>-->
+                <!--<p class="font-size-12">-->
+                    <!--<span class="c-black">如卖家拒绝：</span>-->
+                    <!--<span class="c-gray-dark">你需要重新修改退款申请或申请维权</span>-->
+                <!--</p>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <ul class="block-safeguard-info block block-list font-size-12">
+            <li class="block-item">
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">退款编号</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.serviceID}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">申请时间</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.createTime|date:'yyyy-MM-dd HH:mm:ss'}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">退款原因</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.serviceReason}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">处理方式</i>
+                    <i class="pull-right c-black" ng-if="serviceDetail.service.serviceType==1">不退货退款</i>
+                    <i class="pull-right c-black" ng-if="serviceDetail.service.serviceType==2">退货退款</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">退款金额</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.appRefundAmt}}元</i>
+                </p>
+            </li>
+            <li class="js-more-detail block-item">
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">手机号码</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.cellPhone}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">备注信息</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.buyerRemark}}</i>
+                </p>
+                <!--<p class="padding-right-10">-->
+                    <!--<i class="c-gray-ccc">图片凭证</i>-->
+                    <!--<i class="pull-right c-black">-->
+                        <!--<img src="http://imgqn.koudaitong.com/upload_files/2015/05/13/FrcAyavO_j2H77oCzSEnE0By-ueO.jpg!100x100.jpg">-->
+                    <!--</i>-->
+                <!--</p>-->
+            </li>
+            <li class="js-more-detail block-item">
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">订单编号</i>
+                    <i class="pull-right c-black">{{serviceDetail.orderPayment.orderCode}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">付款时间</i>
+                    <i class="pull-right c-black">{{serviceDetail.orderPayment.payTime|date:'yyyy-MM-dd HH:mm:ss'}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">付款金额</i>
+                    <i class="pull-right c-black">{{serviceDetail.orderPayment.payAmt}}元</i>
+                </p>
+            </li>
+            <!--维权状态=3的时候填写物流信息-->
+
+            <li class="js-more-detail block-item" ng-if="serviceDetail.service.serviceStatus==3">
+                <p class="block-company">
+                    <i class="c-gray-ccc">物流公司</i>
+                    <!--<i class="pull-right c-black">{{serviceDetail.service.delivererName}}</i>-->
+                    <select class="js-reason delcompany" name="serviceReason" ng-init="form_order.deliverers=deliverers[0]"
+                            ng-options="deliverer.delivererName for deliverer in deliverers"
+                            ng-model="form_order.deliverers">
+                        <option value="" selected="selected">请选择物流公司</option>
+                    </select>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc">物流单号</i>
+                    <input type="text" class="deliveryCode" min="0" value=""
+                           placeholder="请填写物流单号" ng-model="form_order.deliveryCode">
+                </p>
+            </li>
+            <li class="js-more-detail block-item" ng-if="(serviceDetail.service.serviceStatus==2||serviceDetail.service.serviceStatus==4||serviceDetail.service.serviceStatus==5)&&serviceDetail.service.delivererName">
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc"><span class="must">*</span>物流公司</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.delivererName}}</i>
+                </p>
+                <p class="padding-right-10">
+                    <i class="c-gray-ccc"><span class="must">*</span>物流单号</i>
+                    <i class="pull-right c-black">{{serviceDetail.service.deliveryCode}}</i>
+                </p>
+            </li>
+        </ul>
+        <div class="js-action-container action-container action-container-safeguard" ng-if="serviceDetail.service.serviceStatus==3">
+            <button class="js-info-btn btn btn-block font-size-14 btn-green"  data-type="close">提交</button>
+        </div>
+        </form>
+        <div class="js-action-container action-container action-container-safeguard" ng-if="serviceDetail.service.serviceStatus!=2&&serviceDetail.service.serviceStatus!=4&&serviceDetail.service.serviceStatus!=5&&serviceDetail.service.serviceStatus!=6">
+            <button class="js-info-btn btn btn-block font-size-14 btn-green" data-type="close" ng-click="cancel_service()">关闭退款申请</button>
+        </div>
+    </div>
+</div>

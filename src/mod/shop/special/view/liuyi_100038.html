@@ -1,0 +1,88 @@
+<div class="content detail index-list">
+<div class="content-body">
+<!--<div class="search_header">-->
+    <!--<div class="logo">-->
+        <!--<img src="static/image/shop/100038/logo.png" style="height:40px"/>-->
+    <!--</div>-->
+    <!--<from class="js-apply-font">-->
+        <!--<div class="search" clearfix>-->
+            <!--<ul class="search_key">-->
+                <!--<li class="search_pic"><a></a><img src="static/image/shop/100038/search.png" style="height:20px"/></a>-->
+                <!--</li>-->
+                <!--<li class="describe">-->
+                    <!--<input type="text" placeholder="请输入关键字" class="name" ng-model="form_order.product_name">-->
+                    <!--<img src="static/image/shop/searchdelete.png" ng-if="form_order.product_name" ng-click="form_order.product_name=''"/>-->
+
+                <!--</li>-->
+                <!--<li class="describe_search">-->
+                    <!--<button class="js-submit" ng-click="search(form_order)">搜索</button>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+        <!--</div>-->
+    <!--</from>-->
+<!--</div>-->
+<div class="img-box">
+    <img src="static/image/shop/100038/index_01.jpg">
+    <!--<pj-carousel images="images" local="1" elm="index_swipe"></pj-carousel>-->
+</div>
+
+<div class="cat clearfix">
+    <a href="http://piplus.wxpai.cn/mvm/forum/v1.4/index.html?ent_code=100038&infoId=55263da7ff79a60465daa543"
+       class="hot">
+        <img src="static/image/shop/100038/index_02.png">
+        <span>微社区</span>
+    </a>
+    <a href="http://piplus.wxpai.cn/sam/aofeiTreasure/game/acd1b81361732217473ff45cd5baea" class="news">
+        <img src="static/image/shop/100038/index_03.png">
+        <span>游戏中心</span>
+    </a>
+    <a href="http://piplus.wxpai.cn/app/pointmall/100038#!/" class="promotion">
+        <img src="static/image/shop/100038/index_04.png">
+        <span>积分商城</span>
+    </a>
+    <a href="http://piplus.wxpai.cn/app/article/100038#!/" class="all">
+        <img src="static/image/shop/100038/index_05.png">
+        <span>热力玩具</span>
+    </a>
+</div>
+<div class="img-box">
+    <img src="static/image/shop/100038/index_11.jpg">
+    <img src="static/image/shop/100038/index_11n.jpg">
+    <a href="#/shop/index/detail?id=73"><img src="static/image/shop/100038/index_06.jpg"></a>
+    <a href="#/shop/index/detail?id=157"><img src="static/image/shop/100038/index_07.jpg"></a>
+    <a href="#/shop/index/detail?id=170"><img src="static/image/shop/100038/index_08.jpg"></a>
+    <a href="#/shop/index/detail?id=158"><img src="static/image/shop/100038/index_09.jpg"></a>
+    <a href="#/shop/index/detail?id=93"><img src="static/image/shop/100038/index_10.jpg"></a>
+
+    <!--<pj-carousel images="images" local="1" elm="index_swipe"></pj-carousel>-->
+</div>
+<div class="good-list" ng-repeat="products in res_products">
+    <div class="header clearfix img-box">
+        <img src="static/image/shop/100038/{{products.groupID}}.png"/>
+    </div>
+    <ul class="clearfix">
+        <li ng-repeat="product in products.products">
+            <a href="#/shop/index/detail?id={{::product.productID}}">
+                <div class="p-img">
+                    <img ng-src="{{::F.get_image(product.url)}}">
+                </div>
+                <div class="p-info">
+                    {{::product.productName}}
+                </div>
+                <div class="flag">
+                    <span class="price">¥{{::product.discount.afterDisPrice>0?product.discount.afterDisPrice:product.salePrice | number:2}}</span>
+
+                    <p class="goodprice"><s class="beforeprice">¥{{::product.discount.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                        <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                    </p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+</div>
+
+</div>

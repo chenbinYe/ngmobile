@@ -1,0 +1,118 @@
+<div class="content cart">
+
+    <div class="tabber  tabber-n3 tabber-double-11 clearfix">
+        <a class="active" href="#/shop/index/cart">购物车</a>
+        <a class="" href="#/shop/index/cusorderlist">我的订单</a>
+    </div>
+
+    <div class="block block-order clearfix">
+        <div class="header" ng-if="F.json_length(goods)>0">
+            <!--<span ng-if="total_price>=100">已参加满一百减二十活动，总价减二十</span>
+            <span ng-if="total_price<100">购物车商品可参加满减活动，还差{{100-total_price}}即可立减20</span>-->
+            <a class="pull-right c-blue font-size-12 edit-list">
+                <span ng-if="op==0" ng-click="change_op(1)">编辑</span>
+                <span ng-if="op==1" ng-click="change_op(0);">完成</span>
+            </a>
+        </div>
+
+        <ul class="list block block-list block-list-cart block-border-none" ng-if="F.json_length(goods)==0">
+            <div class="empty-list ">
+                <div class="empty-list-header">
+                    <h4>购物车还是空的哦~</h4>
+                    <span>赶紧挑选商品吧！</span>
+                </div>
+
+                <div class="empty-list-content"><a href="#/shop" class="home-page tag tag-big tag-orange">去逛逛</a></div>
+            </div>
+        </ul>
+
+
+        <ul class="list block block-list block-list-cart block-border-none" ng-if="F.json_length(goods)>0">
+            <li class="block-item block-item-cart relative clearfix" ng-repeat="good in goods track by $index">
+                <div class="check-container">
+                    <span ng-if="op==0" class="check" ng-class="{'checked':_list['check'][good.skuID||good.id]}"
+                          ng-click="to_checked(good)"></span>
+                    <span ng-if="op==1" class="check" ng-class="{'delete':_list['del'][good.skuID||good.id]}"
+                          ng-click="to_checked(good,'del')"></span>
+                </div>
+                <div class="name-card name-card-3col clearfix">
+                    <a href="#/shop/index/detail?id={{good.id}}" class="thumb"><img
+                            ng-src="{{F.get_image(good.img,60,60,1)}}"></a>
+
+                    <div class="detail">
+                        <a href="#/shop/index/detail?id={{good.id}}">
+                            <h3><i>{{good.name}}</i></h3>
+                        </a>
+
+                        <p class="ellipsis">
+                            <span ng-repeat="sku in good.sku">{{sku}}</span>
+                        </p>
+                    </div>
+                    <div class="right-col price-num">
+                        <div class="price">￥<span>{{good.price}}</span>
+                        </div>
+
+                        <div class="num">
+                            <p ng-if="op==0">×<span class="num-txt">{{good.num}}</span></p>
+
+
+                            <div ng-if="op==1" class="quantity">
+                                <button class="minus" type="button" ng-click="set_order(good)"
+                                        ng-disabled="good.num==0"></button>
+                                <input type="text" class="txt" ng-model="good.num" ng-change="check_quantity(good)">
+                                <button class="plus" type="button" ng-click="set_order(good,1)"
+                                        ng-disabled="good.num==good.stockQty"></button>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="error-box"></div>
+                    </div>
+                </div>
+                <div class="delete-btn"><span>删除</span></div>
+
+            </li>
+            <li class="total-price">商品总价：<span>{{total_price}}</span><!-- <span ng-if="total_price!=0&&total_price>=100">- 20（满100减20）</span>-->
+            </li>
+        </ul>
+
+
+        <div class="bottom-fix">
+            <div class="bottom-cart clear-fix">
+
+                <div class="select-all"
+                     ng-class="{'checked':F.json_length(_list['check'])}"
+                     ng-if="op==0"
+                     ng-click="to_all_check()">
+                    <span class="check"
+                          ng-class="{'checked':F.json_length(_list['check'])==F.json_length(goods)}"></span>全选
+                </div>
+
+                <div class="select-all"
+                     ng-class="{'delete':F.json_length(_list['del'])}"
+                     ng-if="op==1"
+                     ng-click="to_all_check('del')"><span class="check"
+                                                          ng-class="{'delete':F.json_length(_list['del'])==F.json_length(goods)&&F.json_length(_list['del'])>0}"></span>全选
+                </div>
+
+
+                <div ng-if="op==0" class="total-price">合计：<span>{{total_price}}</span><span
+                        ng-if="freight.freightID&&total_price>0&&freight.fullAmt>total_price">+{{freight.freight}}</span>元
+                </div>
+                <!--                    <span ng-if="freight.freightID">+{{freight.freight}}(运费)</span>
+                                    <span ng-if="freight.freightID&&freight.fullAmt<total_price">-{{freight.freight}}({{freight.freightName}})</span></div>-->
+
+                <button ng-if="op==0" ng-click="to_order()" ng-disabled="F.json_length(_list['check'])==0"
+                        class="btn btn-orange-dark font-size-14">结算
+                    <span ng-if="F.json_length(_list['check'])">({{F.json_length(_list['check'])}})</span>
+                </button>
+
+                <button ng-click="to_del()" ng-if="op==1" class="btn font-size-14 btn-red"
+                        ng-disabled="F.json_length(_list['del'])==0">删除
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

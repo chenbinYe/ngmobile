@@ -1,0 +1,144 @@
+<div class="content kaiye auby index-list detail">
+    <div class="content-body">
+        <!--<div class="img-box relClass">-->
+        <!--&lt;!&ndash;<input class="topSearch" type="text" placeholder="请输入商品名">&ndash;&gt;-->
+        <!--<img src="static/image/shop/aoby/top/auby_01_01.jpg">-->
+        <!--</div>-->
+        <!--<div class="classify ">-->
+        <!--&lt;!&ndash;分类信息&ndash;&gt;-->
+        <!--<div class="half">-->
+        <!--&lt;!&ndash;微社区&ndash;&gt;-->
+        <!--<a href="">-->
+        <!--<img class="leftImg" src="static/image/shop/aoby/top/auby_01_02_01.jpg">-->
+        <!--</a>-->
+        <!--&lt;!&ndash;游戏中心&ndash;&gt;-->
+        <!--<a href="">-->
+        <!--<img class="rightImg" src="static/image/shop/aoby/top/auby_01_02_02.jpg">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div class="half">-->
+        <!--&lt;!&ndash;积分商城&ndash;&gt;-->
+        <!--<a href="">-->
+        <!--<img class="rightImg" src="static/image/shop/aoby/top/auby_01_02_03.jpg">-->
+        <!--</a>-->
+        <!--&lt;!&ndash;热力玩具&ndash;&gt;-->
+        <!--<a href="">-->
+        <!--<img class="leftImg" src="static/image/shop/aoby/top/auby_01_02_04.jpg">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;分类信息结束&ndash;&gt;-->
+        <!--</div>-->
+        <div class="img-box">
+            <img src="static/image/shop/aubyThree/auby-3_01.jpg">
+            <img src="static/image/shop/aubyThree/auby-3_02.jpg">
+            <a href="#/shop/index/coupondetail?id=41">
+            <img src="static/image/shop/aubyThree/auby02.jpg" class="gocoupon"></a>
+            <a href="#/shop/index/coupondetail?id=42">
+            <img src="static/image/shop/aubyThree/auby02-02.jpg" class="gocoupon"></a>
+            <a href="#/shop/index/coupondetail?id=43">
+            <img src="static/image/shop/aubyThree/auby02-1.jpg" class="gocoupon"></a>
+
+            <a href="#/shop/index/detail?id=117">
+                <img src="static/image/shop/aubyThree/auby-3_04.jpg">
+            </a>
+
+
+            <a href="#/shop/index/detail?id=126">
+                <img src="static/image/shop/aubyThree/auby-3_05.jpg">
+            </a>
+
+            <!--创意拼插乐-->
+            <a href="#/shop/index/detail?id=155">
+                <img src="static/image/shop/aubyThree/auby-3_06.jpg">
+            </a>
+
+            <!--安抚音乐毯-->
+            <a href="#/shop/index/detail?id=122">
+                <img src="static/image/shop/aubyThree/auby-3_07.jpg">
+            </a>
+
+            <!--旋转小马床铃-->
+            <a href="#/shop/index/detail?id=131">
+                <img src="static/image/shop/aubyThree/auby-3_08.jpg">
+            </a>
+        </div>
+        <!--<div class="good-list-aobei clearfix clearBottom">-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<!--安抚人鱼-->
+                    <!--<a href="#/shop/index/detail?id=155">-->
+                        <!--<img src="static/image/shop/aubyThree/auby-3_09_01.jpg">-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<!--奥贝奇幻森林摇椅
+                    <!--<a href="#/shop/index/detail?id=121">-->
+                        <!--<img src="static/image/shop/aubyThree/auby-3_09_02.jpg">-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<!--钢琴健身架-->
+                    <!--<a href="#/shop/index/detail?id=122">-->
+                        <!--<img src="static/image/shop/aubyThree/auby-3_10_01.jpg">-->
+                    <!--</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                    <!--<!--钢琴健身架
+                    <!--<a href="#/shop/index/detail?id=122">-->
+                        <!--<img src="static/image/shop/aubyThree/auby-3_10_02.jpg">-->
+                    <!--</a>-->
+                <!--</li>-->
+
+            <!--</ul>-->
+        <!--</div>-->
+        <div class="good-list" ng-repeat="products in res_products">
+            <div class="pos">
+                <a href="#/shop/index/list?channeld={{products.groupID}}" class="absClass moreA">更多 >></a>
+                <img class="fullImg" src="static/image/shop/aoby/content/{{products.groupID}}.jpg">
+            </div>
+
+            <ul class="clearfix">
+                <li ng-repeat="product in products.products">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.discount.afterDisPrice>0?product.discount.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.discount.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bottominfo padding20">
+            <div class="bottom-one item">
+                <image src="static/image/shop/bottom-one.jpg"/>
+                <p>专业婴幼玩具领导者 澳贝玩具 分享乐趣</p>
+
+            </div>
+            <div class="bottom-two item">
+                <image src="static/image/shop/bottom-two.jpg"/>
+                <p>澳贝品牌官方店 正品保证 实物拍摄 七天无理由退换货</p>
+
+            </div>
+            <div class="bottom-three item">
+                <image src="static/image/shop/bottom-three.jpg"/>
+                <p>七天无理由退换货</p>
+
+            </div>
+        </div>
+        <!--<div class="img-box padding20">-->
+        <!--<img src="static/image/shop/aobei/bottom.png">-->
+        <!--</div>-->
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<!--提示信息-->
+<div class="motify" ng-class="{'on':_tips_message}">
+    <div class="motify-inner">{{_tips_message}}</div>
+</div>
+        <!--确认信息-->
+<div class="bg-main" ng-if="_confirm_title">
+<div class="confirm"  >
+    <div class="ui-dialog">
+        <div class="ui-dialog-title">
+            <h3>{{_confirm_title}}</h3></div>
+        <div class="ui-dialog-content">
+            <div id="dialog1"  style="display: block;">
+                <p>{{_confirm_content}}</p>
+            </div>
+        </div>
+        <div class="ui-dialog-btns">
+            <a class="ui-btn ui-btn-1" data-key="取消" ng-click="F.cancel_receive(1)" >确定</a>
+            <a class="ui-btn ui-btn-2" data-key="确定" ng-click="F.cancel_receive(2)" >取消</a>
+        </div>
+    </div>
+</div>
+</div>
+<!--加载页面-->
+<div class="loadding" ng-class="{'on':_load_message&&!_tips_message}">
+
+    <div class="loadding-inner">
+        <div class="circle"></div>
+        {{_load_message}}
+    </div>
+</div>
+<!--遮罩层-->
+<div class="diabled_all_ctrl" ng-class="{'on':_diabled}"></div>
+

@@ -1,0 +1,58 @@
+<div class="content coupon" style="min-height: 400px;">
+    <div class="content-body">
+        <div class="ump-coupon-wrap">
+            <div class="channel-nav three-nav">
+                <div class="tabber-ios-gray tabber tabber-ios">
+                    <a class="active" ng-class="{'active':num==8}" ng-click="num=8">全部</a>
+                    <a class="" ng-class="{'active':num==1}" ng-click="num=1">未使用</a>
+                </div>
+            </div>
+            <ul class="list block block-list block-list-cart block-border-none"
+                ng-if="!cusPromotions||F.json_length(cusPromotions)==0">
+                <div class="empty-list ">
+                    <div class="empty-list-header">
+                        <h4>暂时还没有优惠码</h4>
+                        <!--<span>赶紧挑选商品吧！</span>-->
+                    </div>
+                </div>
+            </ul>
+            <ul class="ump-coupon-list" ng-repeat="cusPromotion in cusPromotions">
+                <li class="ump-coupon-item coupon-style-{{$index%4}}" ng-if="cusPromotion.status<=num">
+                    <div class="coupon-left-part-{{$index%4}}">
+                        <div class="inner">
+                            <h4 class="coupon-shop-name">{{cusPromotion.promoCodeName}}</h4>
+
+                            <div class="ump-coupon-value">
+                                <span>￥</span><i>{{cusPromotion.promoCodeAmt}}</i>
+                            </div>
+                            <div class="ump-coupon-condition" ng-if="cusPromotion.fullAmt>0">
+                                使用限制：订单满{{cusPromotion.fullAmt}}元
+                            </div>
+                            <div class="ump-coupon-condition" ng-if="cusPromotion.fullAmt==0">
+                                使用限制：无限制
+                            </div>
+                        </div>
+                    </div>
+                    <div class="coupon-right-part">
+                        <div>
+                            <p>使用期限</p>
+
+                            <p>{{ cusPromotion.startTime|date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+
+                            <p>{{ cusPromotion.endTime|date : 'yyyy-MM-dd HH:mm:ss' }}</p>
+                        </div>
+                        <div class="coupon-use-state">
+                                 <span class="font-size-12" ng-switch="cusPromotion.status">
+                                 <span ng-switch-when="1">未使用</span>
+                                 <span ng-switch-when="2">已使用</span>
+                                 <span ng-switch-when="3">已过期</span>
+                                 <span ng-switch-when="4">已停用</span>
+                                 </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

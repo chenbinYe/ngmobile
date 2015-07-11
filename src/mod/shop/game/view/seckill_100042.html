@@ -1,0 +1,122 @@
+
+<!--奥贝-->
+<div class="content aubysecskill">
+    <div class="header">
+        <div>
+            <img class="fullImage" src="static/image/shop/aubyGame/aubya1_01.jpg">
+        </div>
+        <div class="info" ng-click="secAction.info()">
+            <img src="static/image/shop/aubyGame/question.png">
+        </div>
+        <div class="duang">
+        </div>
+        <div class="revduang">
+        </div>
+        <!--<div class="downArrow">-->
+        <!--<img src="static/image/shop/aubyGame/downArrow.png">-->
+        <!--</div>-->
+
+    </div>
+    <div class="goodContent" ng-if="!productId">
+        <img class="fullImage" ng-src="static/image/shop/aubyGame/aubya1_02_00.jpg">
+    </div>
+    <div class="goodContent" ng-if="productId">
+        <img class="fullImage" ng-src="static/image/shop/aubyGame/aubya1_02_{{productId}}.jpg">
+    </div>
+    <div class="goodFooter">
+        <!--             <img class="fullImage"src="static/image/shop/aubyGame/aubya1_03_01-300.jpg"> -->
+        <div class="seckillButton">
+            <div class="layer">
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.hour_a}}.png" >
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.hour_b}}.png" >
+                <span>
+                    时
+                </span>
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.minute_a}}.png" >
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.minute_b}}.png" >
+                <span>
+                    分
+                </span>
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.second_a}}.png" >
+                <img class="time" ng-src="static/image/shop/aubyGame/{{clock.second_b}}.png" >
+                <span>
+                    秒
+                </span>
+                <!--<img class="time" src="static/image/shop/aubyGame/0.png" >-->
+                <!--<img class="time" src="static/image/shop/aubyGame/0.png" >-->
+            </div>
+            <div class="layer">
+                <a ng-click="checkres()" ng-if="show_sec==1">
+                    <img src="static/image/shop/aubyGame/aubySec.png" >
+                </a>
+                <a ng-if="show_sec==0">
+                    <img src="static/image/shop/aubyGame/aubySecIn.png" >
+                </a>
+            </div>
+            <div class="layer">
+                <a ng-click="secAction.secKillList()">
+                    <img class="small" src="static/image/shop/aubyGame/gl.png" >
+                </a>
+                <a ng-click="secAction.share()">
+                    <img class="small" src="static/image/shop/aubyGame/yq.png" >
+                </a>
+                <a href="#/shop/special/liuyi">
+                    <img class="small" src="static/image/shop/aubyGame/fh.png" >
+                </a>
+
+            </div>
+            <!--<div class="marginTop3">-->
+            <!--<img class="fullImage" src="static/image/shop/aubyGame/99percent.png" >-->
+            <!--</div>-->
+        </div>
+        <!--<div class="relPos">-->
+        <!--<img class="fullImage"src="static/image/shop/aubyGame/aubya1_03_02-158.png">-->
+        <!--<div class="seckillButton">-->
+        <!--<div class="layer down">-->
+        <!--<div class="upArrow" ng-click="secAction.secKillList()">-->
+        <!--<img src="static/image/shop/aubyGame/upArrow.png">-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!--气泡-->
+    <div class="bubble">
+        <div class="bubble bigSize"></div>
+        <div class="bubble mediumSize"></div>
+        <div class="bubble smallSize"></div>
+        <div class="bubble bigSize delay"></div>
+        <div class="bubble mediumSize delay"></div>
+        <div class="bubble smallSize delay"></div>
+
+        <div class="bubble2 mediumSize"></div>
+        <div class="bubble2 smallSize"></div>
+        <div class="bubble2 mediumSize delay"></div>
+        <div class="bubble2 smallSize delay"></div>
+    </div>
+    <!--蒙层-->
+    <div class="mask" ng-if="secAction.maskShow">
+    </div>
+
+    <div class="duangDiv {{secAction.duangShow?'showDuangDiv':''}}" ng-click="secAction.close()">
+        <div class="close left10" ng-if="secAction.maskShow &&!secAction.secKillListShow" ng-click="secAction.close()">
+        </div>
+        <div class="close right10" ng-if="secAction.maskShow && secAction.secKillListShow" ng-click="secAction.close()">
+        </div>
+        <div class="inform basic" ng-if="secAction.saleOutShow">
+            <img class="fullImage" src="static/image/shop/aubyGame/tip01.png">
+        </div>
+        <div class="inform basic" ng-if="secAction.infoShow">
+            <img class="fullImage" src="static/image/shop/aubyGame/tip02.png">
+        </div>
+        <div class="basic" ng-if="secAction.shareShow">
+            <img class="fullImage" src="static/image/shop/aubyGame/tip03.png">
+        </div>
+        <div class="list" ng-if="secAction.secKillListShow">
+            <img class="fullImage" src="static/image/shop/aubyGame/secKillList.jpg">
+        </div>
+    </div>
+    <!--蒙层-->
+
+</div>

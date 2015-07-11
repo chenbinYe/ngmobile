@@ -1,0 +1,137 @@
+<div class="content detail index-list">
+    <div class="content-body">
+       <div class="img-box">
+          <!-- <img src="static/image/shop/index_banner.jpg">-->
+           <pj-carousel images="images" local="1" elm="index_swipe"></pj-carousel>
+       </div>
+
+        <div class="cat clearfix">
+            <a href="#/shop/index/list?tag=hot" class="hot">
+                <img src="static/image/shop/hot.gif">
+                <span>热卖</span>
+            </a>
+            <a href="#/shop/index/list?tag=news" class="news">
+                <img src="static/image/shop/news.gif">
+                <span>新品</span>
+            </a>
+            <a href="#/shop/index/list?tag=promotion" class="promotion">
+                <img src="static/image/shop/promotion.png">
+                <span>特价</span>
+            </a>
+            <a href="#/shop/index/list?tag=all" class="all">
+                <img src="static/image/shop/all.gif">
+                <span>全部</span>
+            </a>
+        </div>
+
+
+        <div class="good-list" ng-if="products[2]">
+            <div class="header clearfix">
+                <span class="">热卖</span>
+                --
+                <a class="morepro" href="#/shop/index/list?tag=hot">更多产品>></a>
+            </div>
+            <ul class="clearfix">
+                <li ng-repeat="product in products[2]" ng-show="$index<num">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.afterDisPrice>0?product.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="good-list" ng-if="products[3]">
+            <div class="header clearfix">
+                <span>新品</span>
+                --
+                <a class="morepro" href="#/shop/index/list?tag=news">更多产品>></a>
+            </div>
+            <ul class="clearfix">
+                <li ng-repeat="product in products[3]" ng-show="$index<num">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.afterDisPrice>0?product.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="good-list" ng-if="products[4]">
+            <div class="header clearfix">
+                <span>特价</span>
+                --
+                <a class="morepro" href="#/shop/index/list?tag=promotion">更多产品>></a>
+            </div>
+            <ul class="clearfix">
+                <li ng-repeat="product in products[4]" ng-show="$index<num">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.afterDisPrice>0?product.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="good-list" ng-if="products[1]">
+            <div class="header clearfix">
+                <span>全部</span>
+                --
+                <a class="morepro" href="#/shop/index/list?tag=all">更多产品>></a>
+            </div>
+            <ul class="clearfix">
+                <li ng-repeat="product in products[1]" ng-show="$index<num">
+                    <a href="#/shop/index/detail?id={{::product.productID}}">
+                        <div class="p-img">
+                            <img ng-src="{{::F.get_image(product.url)}}">
+                        </div>
+                        <div class="p-info">
+                            {{::product.productName}}
+                        </div>
+                        <div class="flag">
+                            <span class="price">¥{{::product.afterDisPrice>0?product.afterDisPrice:product.salePrice | number:2}}</span>
+
+                            <p class="goodprice"><s class="beforeprice">¥{{::product.afterDisPrice>0?product.salePrice:product.originalPrice}}</s>
+                                <span class="time" ng-if="product.firstTabName">{{::product.firstTabName}}</span>
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

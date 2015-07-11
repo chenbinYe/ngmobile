@@ -1,0 +1,49 @@
+<div class="delievery-check" ng-if="show_delivery_layout" ng-class="{'on':show_delivery}"
+     ng-click="ctrl_hide_delivery()">
+    <div class="express-info">
+        <div><img class="thumb" src="static/image/theme/express.jpg"></div>
+        <span class="express-info">
+                <p class="express-company">{{delivererName}}</p>
+                <p class="express-company">快递单号：{{deliveryCode}}</p>
+            </span>
+    </div>
+
+    <div class="block block-list block-border-top-none block-border-bottom-1">
+        <div class="block-item name-card name-card-3col clearfix">
+            <img class="thumb" ng-src="{{::F.get_image(order_deliver.orderSubs[0].url,60,60,1)}}">
+
+            <div class="detail">
+                <h3>{{::order_deliver.orderSubs[0].productName}}</h3>
+
+                <p class="sku-detail_delivery ellipsis js-toggle-more">
+                    <span class="c-gray">
+                            {{::order_deliver.orderSubs[0].productSpecContent}}
+                    </span>
+                </p>
+            </div>
+            <div class="right-col">
+                <div class="price">￥<span>{{::order_deliver.orderSubs[0].unitPrice | number:2}}</span></div>
+                <div class="num">
+                    ×<span class="num-txt">{{::order_deliver.orderSubs[0].qty}}</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="center font-size-12" ng-if="order_deliver.orderSubs.length>1">
+            全部{{::order_deliver.orderSubs.length}}件商品
+        </div>
+        <div class="bottom">总价<span class="c-orange pull-right">￥{{order_deliver.orderAmt}}</span></div>
+    </div>
+
+    <div class="express-div">
+        <div class="express-context" ng-if="!delivery_message">
+            <p>暂无物流详情</p>
+        </div>
+
+        <div class="express-context" ng-repeat="delivery in delivery_message">
+            <p>{{delivery.context}}</p>
+
+            <p>{{delivery.time}}</p>
+        </div>
+    </div>
+</div>
